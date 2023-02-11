@@ -30,6 +30,146 @@ After that, I prepared the Jupyter Code for the Statistical Analysis. For the ju
 
 This Jupyter Code will describe the my approach towards the analysis.
 
+## Description of the code
+
+#### Calculating average and standard deviation for analysis
+
+```
+# Calculating the average
+collision_mean = np.mean(collision)
+timestamp_mean = np.mean(timestamp)
+collisionp_mean = np.mean(collisionp)
+timestampp_mean = np.mean(timestampp)
+
+# Calculating the standard deviation
+collision_std = np.std(collision)
+timestamp_std = np.std(timestamp)
+collisionp_std = np.std(collisionp)
+timestampp_std = np.std(timestampp)
+```
+
+#### Computing medium using standard deviation
+
+```
+# Define labels, positions, bar heights and error bar heights
+labels = ['My Code', 'Professor Code']
+x_pos1 = np.arange(len(labels))
+CTEs1 = [collision_mean, collisionp_mean]
+error1 = [collision_std, collisionp_std]
+
+fig1, ax1 = plt.subplots()
+ax1.bar(x_pos1, CTEs1,
+       yerr=error1,
+       align='center',
+       alpha=0.75,
+       ecolor='black',
+       capsize=20)
+ax1.set_ylabel('Robot change in direction')
+ax1.set_xticks(x_pos1)
+ax1.set_xticklabels(labels)
+ax1.set_title('Difference between trajectory of My Code and Professor Code')
+ax1.yaxis.grid(True)
+
+labels2 = ['My Code', 'Professor Code']
+x_pos2 = np.arange(len(labels))
+CTEs2 = [timestamp_mean, timestampp_mean]
+error2 = [timestamp_std, timestampp_std]
+
+fig2, ax2 = plt.subplots()
+ax2.bar(x_pos2, CTEs2,
+       yerr=error2,
+       align='center',
+       alpha=0.75,
+       ecolor='black',
+       capsize=20)
+ax2.set_ylabel('Time (sec)')
+ax2.set_xticks(x_pos2)
+ax2.set_xticklabels(labels2)
+ax2.set_title('Time taken to complete the circuit')
+ax2.yaxis.grid(True)
+
+plt.show()
+```
+#### Collision Test Graphical Representation
+
+```
+x=[]
+for i in range(1,31):
+    x.append(i)
+print(x)
+
+# plotting points as a scatter plot
+plt.scatter(x, collision, label= "My Code", color= "blue",
+            marker= "*", s=50)
+
+plt.scatter(x, collisionp, label= "Professor Code", color= "red",
+            marker= "*", s=50)
+ 
+# x-axis label
+plt.xlabel('No of the test conducted')
+# frequency label
+plt.ylabel('No of collisions')
+# plot title
+plt.title('Collisions difference between My Code and Professor Code')
+# showing legend
+plt.legend()
+ 
+# function to show the plot
+plt.show()
+```
+
+#### Time Taken Graphical Representation
+
+```
+# plotting points as a scatter plot
+plt.scatter(x, timestamp, label= "My Code", color= "blue",
+            marker= "d", s=50)
+
+plt.scatter(x, timestampp, label= "Professor Code", color= "red",
+            marker= "d", s=50)
+ 
+# x-axis label
+plt.xlabel('No of test conducted')
+# frequency label
+plt.ylabel('Time taken to complete the circuit')
+# plot title
+plt.title('Circuit complition time difference')
+# showing legend
+plt.legend()
+ 
+# function to show the plot
+plt.show()
+```
+#### Graphing Representation of Time taken to complete the circuit and collision difference of both the two codes (my code & professor code)
+
+```
+# Collision difference
+bins = np.linspace(9, 38, 30)
+plt=reload(plt)
+plt.hist([collision, collisionp], bins, label=['My Code', 'Professor Code'])
+plt.title('Collisions dofference of My Code & Professor Code')
+plt.legend(loc='upper right')
+plt.show()
+
+# Time difference to complete the circuit
+bins = np.linspace(110, 170, 30)
+plt.hist([timestamp, timestampp], bins, label=['My Code', 'Professor Code'])
+plt.title('My Code and Professor Code time difference to complete the circuit')
+plt.legend(loc='upper right')
+plt.show()
+```
+#### T-Test Analysis
+```
+statistic_co, p_value = st.ttest_ind(a=collision, b=collisionp, equal_var=True)
+print("Collision_Static = " + str(statistic_co))
+print("p_Values = "+ str(p_value))
+
+statistic_co, p_value = st.ttest_ind(a=timestamp, b=timestampp, equal_var=True)
+print("Collision_Static = " + str(statistic_co))
+print("p_Values = "+ str(p_value))
+```
+
+**Note:** For full Jupyter Code [click here](https://github.com/ankurkohli007/Research_Track_II_Assignment_1_StatisticsAnalysis/blob/main/StatisticsAnalysis.ipynb). 
 ## Results
 
 For the results click on the given [link](StatisticalAnalysisReport_Ankur_Kohli.pdf). 
