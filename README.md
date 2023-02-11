@@ -169,7 +169,7 @@ print("Collision_Static = " + str(statistic_co))
 print("p_Values = "+ str(p_value))
 ```
 
-**Note:** For full Jupyter Code [click here](https://github.com/ankurkohli007/Research_Track_II_Assignment_1_StatisticsAnalysis/blob/main/StatisticsAnalysis.ipynb). 
+**Note:** For full Analysis Code [click here](https://github.com/ankurkohli007/Research_Track_II_Assignment_1_StatisticsAnalysis/blob/main/StatisticsAnalysis.ipynb). 
 ## Results
 
 For the results click on the given [link](StatisticalAnalysisReport_Ankur_Kohli.pdf). 
